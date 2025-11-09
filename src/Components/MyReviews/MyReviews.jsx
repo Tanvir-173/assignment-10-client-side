@@ -40,21 +40,26 @@ const MyReviews = () => {
 
   // Delete review
   const handleDelete = async (id) => {
-    try {
-      const res = await fetch(`http://localhost:5000/reviews/${id}`, {
-        method: "DELETE",
-      });
-      const data = await res.json();
-      if (data.deletedCount > 0) {
-        toast.success("Review deleted successfully!");
-        setReviews(reviews.filter((r) => r._id !== id));
-      }
-    } catch (err) {
-      console.error(err);
-      toast.error("Failed to delete review!");
+  try {
+    const res = await fetch(`http://localhost:5000/reviews/${id}`, {
+      method: "DELETE",
+    });
+    const data = await res.json();
+
+    // Check response message instead
+    if (res.ok) {
+      toast.success(data.message || "Review deleted successfully!");
+      setReviews(reviews.filter((r) => r._id !== id));
+    } else {
+      toast.error(data.message || "Failed to delete review!");
     }
-    setShowModal(false);
-  };
+  } catch (err) {
+    console.error(err);
+    toast.error("Failed to delete review!");
+  }
+  setShowModal(false);
+};
+
 
   if (loading || loadingReviews) return <p className="text-center py-10">Loading...</p>;
 

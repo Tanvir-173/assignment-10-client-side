@@ -12,6 +12,7 @@ import AddReview from './Components/AddReview/AddReview.jsx';
 import PrivateRoute from './Routs/PrivateRoute.jsx';
 import AllReviews from './Components/AllReviews/AllReviews.jsx';
 import MyReviews from './Components/MyReviews/MyReviews.jsx';
+import EditReview from './Components/EditReview/EditReview.jsx';
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,14 @@ const router = createBrowserRouter([
         path:'All-Reviews',
         Component:AllReviews
 
+      },
+      {
+        path: "edit-review/:id", // NEW ROUTE
+        element: (
+          <PrivateRoute>
+            <EditReview />
+          </PrivateRoute>
+        ),
       }
     ]
   },

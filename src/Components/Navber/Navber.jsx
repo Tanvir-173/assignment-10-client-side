@@ -70,6 +70,12 @@ const Navbar = () => {
                 <Link to="/my-reviews" className="block px-4 py-2 hover:bg-gray-100">
                   My Reviews
                 </Link>
+
+                {/* NEW MENU ITEM */}
+                <Link to="/my-favorites" className="block px-4 py-2 hover:bg-gray-100">
+                  My Favorites
+                </Link>
+
                 <button
                   onClick={handleLogout}
                   className="w-full text-left px-4 py-2 hover:bg-gray-100"

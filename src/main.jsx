@@ -13,6 +13,7 @@ import PrivateRoute from './Routs/PrivateRoute.jsx';
 import AllReviews from './Components/AllReviews/AllReviews.jsx';
 import MyReviews from './Components/MyReviews/MyReviews.jsx';
 import EditReview from './Components/EditReview/EditReview.jsx';
+import NotFound from './Components/NotFound/NotFound.jsx';
 
 const router = createBrowserRouter([
   {
@@ -59,6 +60,12 @@ const router = createBrowserRouter([
             <EditReview />
           </PrivateRoute>
         ),
+      },
+      {
+        
+        path: "*",
+        Component:NotFound,
+      
       }
     ]
   },

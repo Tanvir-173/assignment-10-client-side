@@ -1,4 +1,3 @@
-// src/Components/AllReviews/AllReviews.jsx
 import React, { useEffect, useState, useContext } from "react";
 import Spinner from "../../Spinner/Spinner";
 import { AuthContext } from "../../Provider/AuthProvider";
@@ -8,28 +7,33 @@ import { useNavigate } from "react-router";
 const AllReviews = () => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [favoriteIds, setFavoriteIds] = useState([]); // Track favorited review IDs
+  const [favoriteIds, setFavoriteIds] = useState([]);
+  const [searchTerm, setSearchTerm] = useState(""); // For search input
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  // Fetch all reviews
+  // Fetch reviews (with optional search)
+  const fetchReviews = async (search = "") => {
+    setLoading(true);
+    try {
+      let url = "http://localhost:5000/reviews";
+      if (search) url += `?search=${encodeURIComponent(search)}`;
+      const res = await fetch(url);
+      const data = await res.json();
+      setReviews(data);
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to fetch reviews");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchReviews = async () => {
-      try {
-        const res = await fetch("http://localhost:5000/reviews");
-        const data = await res.json();
-        setReviews(data);
-      } catch (err) {
-        console.error(err);
-        toast.error("Failed to fetch reviews");
-      } finally {
-        setLoading(false);
-      }
-    };
     fetchReviews();
   }, []);
 
-  // Fetch user favorites to prevent duplicates
+  // Fetch favorites to prevent duplicates
   useEffect(() => {
     if (!user) return;
     const fetchFavorites = async () => {
@@ -51,7 +55,6 @@ const AllReviews = () => {
       return navigate("/login");
     }
 
-    // Check if already favorited
     if (favoriteIds.includes(review._id)) {
       toast.info("Already in Favorites!");
       return;
@@ -79,7 +82,7 @@ const AllReviews = () => {
 
       if (data.insertedId) {
         toast.success("Added to Favorites!");
-        setFavoriteIds(prev => [...prev, review._id]); // Update state
+        setFavoriteIds(prev => [...prev, review._id]);
       } else {
         toast.info(data.message || "Already in Favorites!");
       }
@@ -89,17 +92,39 @@ const AllReviews = () => {
     }
   };
 
+  // Handle Search Form Submit
+  const handleSearch = (e) => {
+    e.preventDefault();
+    fetchReviews(searchTerm); // Fetch reviews from server with search term
+  };
+
   if (loading) return <Spinner />;
-  if (reviews.length === 0) return <p className="text-center py-10 text-gray-500">No reviews yet.</p>;
+  if (reviews.length === 0) return <p className="text-center py-10 text-gray-500">No reviews found.</p>;
 
   return (
     <section className="max-w-6xl mx-auto my-10 px-4">
       <h2 className="text-3xl font-bold mb-6 text-center">All Reviews</h2>
+
+      {/* Search Bar */}
+      <form onSubmit={handleSearch} className="mb-6 flex justify-center">
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="Search by Food Name..."
+          className="w-full md:w-1/3 px-3 py-2 border rounded-l"
+        />
+        <button
+          type="submit"
+          className="px-4 bg-orange-500 text-white rounded-r hover:bg-orange-600"
+        >
+          Search
+        </button>
+      </form>
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {reviews.map((review) => (
           <div key={review._id} className="bg-white shadow rounded p-4 flex flex-col relative">
-
-            {/* Favorite Button */}
             <button
               onClick={() => handleFavorite(review)}
               className={`absolute top-3 right-3 text-2xl ${favoriteIds.includes(review._id) ? "text-red-500" : "text-gray-400 hover:text-red-500"}`}

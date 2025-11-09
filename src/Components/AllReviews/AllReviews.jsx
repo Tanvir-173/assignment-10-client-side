@@ -1,5 +1,6 @@
 // src/Components/AllReviews/AllReviews.jsx
 import React, { useEffect, useState } from "react";
+import Spinner from "../../Spinner/Spinner";
 
 const AllReviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -21,7 +22,7 @@ const AllReviews = () => {
     fetchReviews();
   }, []);
 
-  if (loading) return <p className="text-center py-10">Loading reviews...</p>;
+  if (loading) return <Spinner />
   if (reviews.length === 0) return <p className="text-center py-10 text-gray-500">No reviews yet.</p>;
 
   return (

@@ -38,6 +38,8 @@ const Home = () => {
         autoplay: true,
         autoplaySpeed: 4000,
     };
+    
+ 
 
     return (
         <div>

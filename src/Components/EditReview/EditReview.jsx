@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Spinner from "../../Spinner/Spinner";
 
 const EditReview = () => {
   const { id } = useParams();
@@ -29,7 +32,7 @@ const EditReview = () => {
         setLoading(false);
       } catch (err) {
         console.error(err);
-        alert("Error fetching review");
+        toast.error("Error fetching review");
       }
     };
     fetchReview();
@@ -50,15 +53,16 @@ const EditReview = () => {
       });
 
       if (!res.ok) throw new Error("Failed to update review");
-      alert("Review updated successfully!");
+
+      toast.success("Review updated successfully!");
       navigate("/my-reviews"); // Redirect after update
     } catch (err) {
       console.error(err);
-      alert("Error updating review");
+      toast.error("Error updating review");
     }
   };
 
-  if (loading) return <p>Loading review...</p>;
+  if (loading) return <Spinner />;
 
   return (
     <div className="max-w-md mx-auto mt-10">

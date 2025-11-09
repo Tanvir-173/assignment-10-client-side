@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
+import Spinner from "../../Spinner/Spinner";
 
 const MyReviews = () => {
   const { user, loading } = useContext(AuthContext);
@@ -60,8 +61,8 @@ const MyReviews = () => {
   setShowModal(false);
 };
 
-
-  if (loading || loadingReviews) return <p className="text-center py-10">Loading...</p>;
+  // Show spinner while loading
+  if (loading || loadingReviews) return <Spinner />;
 
   return (
     <div className="max-w-6xl mx-auto my-10 px-4">

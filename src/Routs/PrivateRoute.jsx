@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { Navigate, useLocation } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import { toast } from "react-toastify";
+import Spinner from "../Spinner/Spinner";
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
@@ -10,11 +11,11 @@ const PrivateRoute = ({ children }) => {
 
   if (loading) {
     // Show a loader while checking auth status
-    return <p>Loading...</p>;
+    return <Spinner/>;
   }
 
   if (!user) {
-    toast.error("You must be logged in to access this page!");
+    // toast.error("You must be logged in to access this page!");
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 

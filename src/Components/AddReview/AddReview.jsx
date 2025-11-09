@@ -2,18 +2,30 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
+import { useEffect } from "react";
 
 const AddReview = () => {
   const { user } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!user) {
+      toast.error("You must be logged in to add a review!");
+      navigate("/login");
+    }
+  }, [user, navigate]);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!user) {
-      toast.error("You must be logged in to add a review!");
-      return;
-    }
+    
+
+    // if (!user) {
+    //   // toast.error("You must be logged in to add a review!");
+    //   return;
+    // }
 
     setLoading(true);
 

@@ -16,7 +16,7 @@ const MyReviews = () => {
   // Redirect if not logged in
   useEffect(() => {
     if (!loading && !user) {
-      toast.error("You must be logged in to view your reviews!");
+    //   toast.error("You must be logged in to view your reviews!");
       navigate("/login");
     }
   }, [user, loading, navigate]);

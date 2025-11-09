@@ -14,6 +14,7 @@ import AllReviews from './Components/AllReviews/AllReviews.jsx';
 import MyReviews from './Components/MyReviews/MyReviews.jsx';
 import EditReview from './Components/EditReview/EditReview.jsx';
 import NotFound from './Components/NotFound/NotFound.jsx';
+import MyFavorites from './Components/MyFavorites/MyFavorites.jsx';
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyReviews />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "my-favorites",  // NEW ROUTE
+        element: (
+          <PrivateRoute>
+            <MyFavorites />
           </PrivateRoute>
         ),
       },

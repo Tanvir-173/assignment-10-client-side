@@ -1,0 +1,136 @@
+// src/Components/Reviews/MyReviews.jsx
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
+import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
+
+const MyReviews = () => {
+  const { user, loading } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const [reviews, setReviews] = useState([]);
+  const [loadingReviews, setLoadingReviews] = useState(true);
+  const [deleteId, setDeleteId] = useState(null); // ID of review to delete
+  const [showModal, setShowModal] = useState(false);
+
+  // Redirect if not logged in
+  useEffect(() => {
+    if (!loading && !user) {
+      toast.error("You must be logged in to view your reviews!");
+      navigate("/login");
+    }
+  }, [user, loading, navigate]);
+
+  // Fetch user reviews
+  useEffect(() => {
+    if (!user) return;
+    const fetchReviews = async () => {
+      try {
+        const res = await fetch(`http://localhost:5000/reviews?userEmail=${user.email}`);
+        const data = await res.json();
+        setReviews(data);
+      } catch (err) {
+        console.error(err);
+        toast.error("Failed to fetch your reviews!");
+      } finally {
+        setLoadingReviews(false);
+      }
+    };
+    fetchReviews();
+  }, [user]);
+
+  // Delete review
+  const handleDelete = async (id) => {
+    try {
+      const res = await fetch(`http://localhost:5000/reviews/${id}`, {
+        method: "DELETE",
+      });
+      const data = await res.json();
+      if (data.deletedCount > 0) {
+        toast.success("Review deleted successfully!");
+        setReviews(reviews.filter((r) => r._id !== id));
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to delete review!");
+    }
+    setShowModal(false);
+  };
+
+  if (loading || loadingReviews) return <p className="text-center py-10">Loading...</p>;
+
+  return (
+    <div className="max-w-6xl mx-auto my-10 px-4">
+      <h2 className="text-3xl font-bold mb-6">My Reviews</h2>
+      {reviews.length === 0 ? (
+        <p className="text-center text-gray-500">You haven't added any reviews yet.</p>
+      ) : (
+        <table className="w-full border-collapse border border-gray-300">
+          <thead>
+            <tr className="bg-gray-100">
+              <th className="border px-4 py-2">Food Image</th>
+              <th className="border px-4 py-2">Food Name</th>
+              <th className="border px-4 py-2">Restaurant Name</th>
+              <th className="border px-4 py-2">Posted Date</th>
+              <th className="border px-4 py-2">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {reviews.map((review) => (
+              <tr key={review._id} className="text-center">
+                <td className="border px-4 py-2">
+                  <img src={review.foodImage} alt={review.foodName} className="w-20 h-20 object-cover mx-auto" />
+                </td>
+                <td className="border px-4 py-2">{review.foodName}</td>
+                <td className="border px-4 py-2">{review.restaurantName}</td>
+                <td className="border px-4 py-2">{new Date(review.date).toLocaleDateString()}</td>
+                <td className="border px-4 py-2 space-x-2">
+                  <button
+                    onClick={() => navigate(`/edit-review/${review._id}`)}
+                    className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => {
+                      setDeleteId(review._id);
+                      setShowModal(true);
+                    }}
+                    className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+
+      {/* Delete confirmation modal */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
+          <div className="bg-white p-6 rounded shadow-md w-96 text-center">
+            <h3 className="text-xl font-bold mb-4">Confirm Delete</h3>
+            <p className="mb-6">Are you sure you want to delete this review?</p>
+            <div className="flex justify-around">
+              <button
+                onClick={() => handleDelete(deleteId)}
+                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+              >
+                Confirm
+              </button>
+              <button
+                onClick={() => setShowModal(false)}
+                className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default MyReviews;

@@ -7,7 +7,7 @@ import FeaturedReviews from "../FeaturedReviews/FeaturedReviews";
 import WhyLoveUs from "../WhyLoveUs/WhyLoveUs";
 import PopularCities from "../PopularCities/PopularCities";
 
-const usersPromise=fetch('http://localhost:3000/pruducts').then(res=>res.json())
+const usersPromise=fetch('http://localhost:5000/pruducts').then(res=>res.json())
 
 const Home = () => {
     const banners = [

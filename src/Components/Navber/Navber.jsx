@@ -38,7 +38,7 @@ const Navbar = () => {
       >
         <div className="flex flex-col md:flex-row md:space-x-4 space-y-3 md:space-y-0 mt-3 md:mt-0">
           <Link to="/" className="hover:text-orange-500">Home</Link>
-          <Link to="/explore" className="hover:text-orange-500">Explore</Link>
+          <Link to="/All-Reviews" className="hover:text-orange-500">All Reviews</Link>
         </div>
 
         {/* If Not Logged In */}

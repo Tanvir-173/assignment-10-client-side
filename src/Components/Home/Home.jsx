@@ -6,8 +6,10 @@ import Slider from "react-slick";
 import FeaturedReviews from "../FeaturedReviews/FeaturedReviews";
 import WhyLoveUs from "../WhyLoveUs/WhyLoveUs";
 import PopularCities from "../PopularCities/PopularCities";
+// import AllReviews from "../AllReviews/AllReviews";
 
 const usersPromise=fetch('http://localhost:5000/pruducts').then(res=>res.json())
+// const reviewPromise=fetch('http://localhost:5000/reviews').then(res=>res.json())
 
 const Home = () => {
     const banners = [
@@ -63,6 +65,7 @@ const Home = () => {
                 </Slider>
             </section>
             <FeaturedReviews usersPromise={usersPromise}></FeaturedReviews>
+            {/* <AllReviews reviewPromise={reviewPromise}></AllReviews> */}
             <WhyLoveUs></WhyLoveUs>
             <PopularCities></PopularCities>
         </div>

@@ -10,6 +10,7 @@ import AuthProvider from './Provider/AuthProvider.jsx';
 import Login from './Components/Login/Login.jsx';
 import AddReview from './Components/AddReview/AddReview.jsx';
 import PrivateRoute from './Routs/PrivateRoute.jsx';
+import AllReviews from './Components/AllReviews/AllReviews.jsx';
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,11 @@ const router = createBrowserRouter([
             <AddReview />
           </PrivateRoute>
         ),
+      },
+      {
+        path:'All-Reviews',
+        Component:AllReviews
+
       }
     ]
   },

@@ -6,6 +6,8 @@ import Slider from "react-slick";
 import FeaturedReviews from "../FeaturedReviews/FeaturedReviews";
 import WhyLoveUs from "../WhyLoveUs/WhyLoveUs";
 import PopularCities from "../PopularCities/PopularCities";
+import banner_img_1 from "./banner1.jpg"
+import banner2 from "./banner2.jpg"
 // import AllReviews from "../AllReviews/AllReviews";
 
 const usersPromise=fetch('http://localhost:5000/pruducts').then(res=>res.json())
@@ -14,14 +16,14 @@ const usersPromise=fetch('http://localhost:5000/pruducts').then(res=>res.json())
 const Home = () => {
     const banners = [
         {
-            image: "/images/hero1.jpg",
+            image:banner_img_1,
             title: "Explore Local Flavors",
             subtitle: "Discover the best dishes near you",
             buttonText: "View Reviews",
-            buttonLink: "/reviews",
+            buttonLink: "/All-Reviews",
         },
         {
-            image: "/images/hero2.jpg",
+            image:banner2,
             title: "Share Your Food Experience",
             subtitle: "Post reviews and photos of your favorite meals",
             buttonText: "Add Review",

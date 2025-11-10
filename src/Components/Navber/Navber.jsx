@@ -1,10 +1,13 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router";
+
 import { AuthContext } from "../../Provider/AuthProvider";
 import { toast } from "react-toastify";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  console.log(user)
+  console.log(user?.photoURL)
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -15,7 +18,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white shadow-md px-6 py-3 flex justify-between items-center">
+    <nav className="bg-white shadow-md px-6 py-3 flex justify-between items-center z-50">
       {/* Logo */}
       <Link to="/" className="text-2xl font-bold text-orange-600">
         Local Food Lovers

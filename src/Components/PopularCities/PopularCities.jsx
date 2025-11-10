@@ -1,10 +1,14 @@
 import React from "react";
+import Dhaka from "./Dhaka.jpg"
+import Sylhet from "./sylhet.jpg"
+import Rajshshi from "./Rajshahi.jpg"
+import Cittagong from "./cittagong.jpg"
 
 const cities = [
-  { name: "Dhaka", image: "/images/cities/dhaka.jpg" },
-  { name: "Chittagong", image: "/images/cities/ctg.jpg" },
-  { name: "Sylhet", image: "/images/cities/sylhet.jpg" },
-  { name: "Rajshahi", image: "/images/cities/rajshahi.jpg" },
+  { name: "Dhaka", image: Dhaka },
+  { name: "Chittagong", image: Cittagong },
+  { name: "Sylhet", image:Sylhet  },
+  { name: "Rajshahi", image: Rajshshi },
 ];
 
 const PopularCities = () => {

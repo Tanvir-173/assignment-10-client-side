@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Spinner from "../../Spinner/Spinner"; // import your spinner component
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 const FeaturedReviews = ({ usersPromise }) => {
   const [reviews, setReviews] = useState([]);
@@ -28,7 +30,7 @@ const FeaturedReviews = ({ usersPromise }) => {
           <p>{review.restaurantName}</p>
           <p>{review.location}</p>
           <p>Reviewed by: {review.userEmail || review.reviewerName}</p>
-          <p>Rating: {review.rating} ⭐</p>
+          <p>Rating: {review.rating} <FontAwesomeIcon icon={faStar} size="sm" className="text-yellow-500" /></p>
         </div>
       ))}
     </div>

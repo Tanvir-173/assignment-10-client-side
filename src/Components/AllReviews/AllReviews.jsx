@@ -3,6 +3,9 @@ import Spinner from "../../Spinner/Spinner";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 const AllReviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -130,14 +133,15 @@ const AllReviews = () => {
               className={`absolute top-3 right-3 text-2xl ${favoriteIds.includes(review._id) ? "text-red-500" : "text-gray-400 hover:text-red-500"}`}
               title={favoriteIds.includes(review._id) ? "Already Favorited" : "Add to Favorites"}
             >
-              ♥
+              <FontAwesomeIcon icon={faHeart} className="text-red-500" />
+
             </button>
 
             <img src={review.foodImage} alt={review.foodName} className="w-full h-40 object-cover rounded mb-4" />
             <h3 className="text-xl font-semibold">{review.foodName}</h3>
             <p className="text-gray-500">{review.restaurantName}</p>
             <p className="text-gray-500 mb-2">{review.location}</p>
-            <p className="mb-2">Rating: {review.rating} ⭐</p>
+            <p className="mb-2">Rating: {review.rating} <FontAwesomeIcon icon={faStar} size="sm" className="text-yellow-500" /></p>
             <p className="text-gray-700 mb-4">{review.reviewText}</p>
             <p className="text-sm text-gray-400">
               Posted by {review.userEmail} on {new Date(review.date).toLocaleDateString()}

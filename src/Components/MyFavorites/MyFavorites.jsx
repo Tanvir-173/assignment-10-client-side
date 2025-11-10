@@ -3,6 +3,9 @@ import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Spinner from "../../Spinner/Spinner";
 import { toast } from "react-toastify";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const MyFavorites = () => {
   const { user } = useContext(AuthContext);
@@ -62,14 +65,14 @@ const MyFavorites = () => {
               className="absolute top-3 right-3 text-xl text-gray-400 hover:text-red-500"
               title="Remove from Favorites"
             >
-              ✖
+               <FontAwesomeIcon icon={faTrash} size="lg" className="text-red-500" />
             </button>
 
             <img src={fav.foodImage} alt={fav.foodName} className="w-full h-40 object-cover rounded mb-4" />
             <h3 className="text-xl font-semibold">{fav.foodName}</h3>
             <p className="text-gray-500">{fav.restaurantName}</p>
             <p className="text-gray-500 mb-2">{fav.location}</p>
-            <p className="mb-2">Rating: {fav.rating} ⭐</p>
+            <p className="mb-2">Rating: {fav.rating} <FontAwesomeIcon icon={faStar} size="sm" className="text-yellow-500" /></p>
             <p className="text-sm text-gray-400">
               Added on {new Date(fav.date).toLocaleDateString()}
             </p>

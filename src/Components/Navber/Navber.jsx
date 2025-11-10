@@ -1,13 +1,12 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router";
-
 import { AuthContext } from "../../Provider/AuthProvider";
 import { toast } from "react-toastify";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-  console.log(user)
-  console.log(user?.photoURL)
+  // console.log(user)
+  // console.log(user?.photoURL)
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 

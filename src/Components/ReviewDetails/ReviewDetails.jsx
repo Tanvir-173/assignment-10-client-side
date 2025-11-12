@@ -10,7 +10,7 @@ const ReviewDetails = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`https://assignment10-server-ruby-beta.vercel.app/pruducts/${id}`)
+    fetch(`https://assignment10-server-ruby-beta.vercel.app/reviews/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setReview(data);

@@ -15,7 +15,7 @@ const Home = () => {
 
   // Fetch products on component mount
   useEffect(() => {
-    fetch("https://assignment10-server-ruby-beta.vercel.app/pruducts") // fixed typo here
+    fetch("https://assignment10-server-ruby-beta.vercel.app/reviews") // fixed typo here
       .then((res) => {
         if (!res.ok) {
           throw new Error(`HTTP error! Status: ${res.status}`);

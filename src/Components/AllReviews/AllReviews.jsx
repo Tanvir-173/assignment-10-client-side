@@ -19,7 +19,7 @@ const AllReviews = () => {
   const fetchReviews = async (search = "") => {
     setLoading(true);
     try {
-      let url = "http://localhost:5000/reviews";
+      let url = "https://assignment10-server-ruby-beta.vercel.app/reviews";
       if (search) url += `?search=${encodeURIComponent(search)}`;
       const res = await fetch(url);
       const data = await res.json();
@@ -41,7 +41,7 @@ const AllReviews = () => {
     if (!user) return;
     const fetchFavorites = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/favorites?email=${user.email}`);
+        const res = await fetch(`https://assignment10-server-ruby-beta.vercel.app/favorites?email=${user.email}`);
         const data = await res.json();
         setFavoriteIds(data.map(fav => fav.reviewId));
       } catch (err) {
@@ -75,7 +75,7 @@ const AllReviews = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:5000/favorites", {
+      const res = await fetch("https://assignment10-server-ruby-beta.vercel.app/favorites", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(favoriteData),

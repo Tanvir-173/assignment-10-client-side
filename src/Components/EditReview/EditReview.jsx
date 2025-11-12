@@ -19,7 +19,7 @@ const EditReview = () => {
   useEffect(() => {
     const fetchReview = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/reviews/${id}`);
+        const res = await fetch(`https://assignment10-server-ruby-beta.vercel.app/reviews/${id}`);
         if (!res.ok) throw new Error("Failed to fetch review");
         const data = await res.json();
 
@@ -46,7 +46,7 @@ const EditReview = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`http://localhost:5000/reviews/${id}`, {
+      const res = await fetch(`https://assignment10-server-ruby-beta.vercel.app/reviews/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(review),

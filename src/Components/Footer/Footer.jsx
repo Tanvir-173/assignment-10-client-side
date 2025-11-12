@@ -46,7 +46,7 @@ const Footer = () => {
 
       {/* Copyright */}
       <div className="text-center text-sm mt-6">
-        © 2025 Local Food Lovers Network. All rights reserved.
+        @ 2025 Local Food Lovers Network. All rights reserved.
       </div>
     </footer>
   );

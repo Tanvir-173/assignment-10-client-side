@@ -41,7 +41,7 @@ const AddReview = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:5000/reviews", {
+      const res = await fetch("https://assignment10-server-ruby-beta.vercel.app/reviews", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(reviewData),

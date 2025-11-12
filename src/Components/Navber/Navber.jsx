@@ -59,6 +59,7 @@ const Navbar = () => {
         {user && (
           <div className="relative md:ml-4 mt-3 md:mt-0">
             <img
+            referrerPolicy="no-referrer"
               src={user?.photoURL || "/default-avatar.png"}
               className="w-10 h-10 rounded-full cursor-pointer border"
               onClick={() => setDropdownOpen(!dropdownOpen)}

@@ -39,7 +39,7 @@ const Register = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((result) => {
         updateProfile(result.user, { displayName: name, photoURL: photo });
-        toast.success("Registration successful!");
+        // toast.success("Registration successful!");
         navigate("/");
       })
       .catch((err) => {

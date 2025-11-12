@@ -28,18 +28,22 @@ const Login = () => {
         navigate("/"); // redirect to homepage
       })
       .catch((err) => {
+        console.log(err.code); // helpful for debugging
         switch (err.code) {
-          case "auth/user-not-found":
-            toast.error("User not found!");
-            break;
-          case "auth/wrong-password":
-            toast.error("Wrong password!");
+          case "auth/invalid-credential":
+            toast.error("Invalid email or password!");
             break;
           case "auth/invalid-email":
             toast.error("Invalid email address!");
             break;
+          case "auth/user-disabled":
+            toast.error("This user account has been disabled!");
+            break;
+          case "auth/too-many-requests":
+            toast.error("Too many attempts. Please try again later!");
+            break;
           default:
-            toast.error("Login failed!");
+            toast.error("Login failed! Please try again.");
         }
       });
   };

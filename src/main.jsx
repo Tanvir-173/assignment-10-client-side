@@ -15,6 +15,7 @@ import MyReviews from './Components/MyReviews/MyReviews.jsx';
 import EditReview from './Components/EditReview/EditReview.jsx';
 import NotFound from './Components/NotFound/NotFound.jsx';
 import MyFavorites from './Components/MyFavorites/MyFavorites.jsx';
+import ReviewDetails from './Components/ReviewDetails/ReviewDetails.jsx';
 
 const router = createBrowserRouter([
   {
@@ -62,6 +63,8 @@ const router = createBrowserRouter([
         Component:AllReviews
 
       },
+      { path: "/reviews/:id", 
+        Component:ReviewDetails },
       {
         path: "edit-review/:id", // NEW ROUTE
         element: (

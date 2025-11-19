@@ -1,25 +1,31 @@
-This is the client side of the Food Review App. It is built with React and communicates with the backend API to display food products, manage reviews, and handle user authentication.
 
-Tools Used
-
-React (Vite)
-
-React Router 
-
-Tailwind CSS
-
-Firebase Authentication
+# Local Food Lover 
 
 
 
-Functionality
+##  Live Link
+[Visit Site](https://assignment10-3c802.web.app)
 
-User login and registration with Firebase
+##  Project Overview
+Local Food Lover is a **food discovery platform** that helps users explore local restaurants and cuisines. Users can browse restaurants, read reviews, and submit their own feedback. The platform is designed to be responsive and user-friendly.
 
-Display food products from the backend
+##  Technology Stack
+- **Frontend:** React, Tailwind CSS, JavaScript  
+- **Backend / Services:** Firebase (Authentication & Database)  
 
-Add, edit, and delete reviews
+##  Main Features
+- User authentication and registration using Firebase  
+- Search and filter restaurants by cuisine or location  
+- Submit and read user reviews and ratings  
+- Responsive design for mobile and desktop  
 
-Add items to favorites
+##  Dependencies
+- `react-router-dom`  
+- `firebase`  
+- `tailwindcss`  
 
-Responsive design for all devices
+##  How to Run Locally
+1. Clone the repository:
+```bash
+git clone https://github.com/Tanvir-173/local-food-lover.git
+cd local-food-lover

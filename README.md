@@ -22,10 +22,12 @@ Local Food Lover is a **food discovery platform** that helps users explore local
 ##  Dependencies
 - `react-router-dom`  
 - `firebase`  
-- `tailwindcss`  
+- `tailwindcss`
+## Database
+- Mongobd
 
 ##  How to Run Locally
 1. Clone the repository:
 ```bash
-git clone https://github.com/Tanvir-173/local-food-lover.git
+git clone https://github.com/Tanvir-173/assignment-10-client-side
 cd local-food-lover
